@@ -15,35 +15,35 @@ class NameLoadTest {
     }
 
     @Test
-    void CheckValidData(){
+    void checkValidData() {
         NameLoad nameLoad = new NameLoad();
         nameLoad.parse("John=Doe");
         assertThat(!nameLoad.getMap().isEmpty());
     }
 
     @Test
-    void IsNotKey(){
+    void isNotKey() {
         NameLoad nameLoad = new NameLoad();
         assertThatThrownBy(() -> nameLoad.parse("=Doe"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void IsNotValue(){
+    void isNotValue() {
         NameLoad nameLoad = new NameLoad();
         assertThatThrownBy(() -> nameLoad.parse("John="))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void IsNotValid(){
+    void isNotValid() {
         NameLoad nameLoad = new NameLoad();
         assertThatThrownBy(() -> nameLoad.parse("John Doe"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void isCheckEmptyMap(){
+    void isCheckEmptyMap() {
         NameLoad nameLoad = new NameLoad();
         assertThatThrownBy(nameLoad::getMap)
         .isInstanceOf(IllegalStateException.class)
