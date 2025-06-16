@@ -1,0 +1,52 @@
+package ru.job4j.assertj;
+
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+class NameLoadTest {
+    @Test
+    void checkEmpty() {
+        NameLoad nameLoad = new NameLoad();
+        assertThatThrownBy(nameLoad::getMap)
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessageContaining("no data");
+    }
+
+    @Test
+    void CheckValidData(){
+        NameLoad nameLoad = new NameLoad();
+        nameLoad.parse("John=Doe");
+        assertThat(!nameLoad.getMap().isEmpty());
+    }
+
+    @Test
+    void IsNotKey(){
+        NameLoad nameLoad = new NameLoad();
+        assertThatThrownBy(() -> nameLoad.parse("=Doe"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void IsNotValue(){
+        NameLoad nameLoad = new NameLoad();
+        assertThatThrownBy(() -> nameLoad.parse("John="))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void IsNotValid(){
+        NameLoad nameLoad = new NameLoad();
+        assertThatThrownBy(() -> nameLoad.parse("John Doe"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void isCheckEmptyMap(){
+        NameLoad nameLoad = new NameLoad();
+        assertThatThrownBy(nameLoad::getMap)
+        .isInstanceOf(IllegalStateException.class)
+        .hasMessageContaining("collection contains no data");
+    }
+}
