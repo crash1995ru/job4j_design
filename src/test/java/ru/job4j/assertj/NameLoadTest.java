@@ -36,13 +36,13 @@ class NameLoadTest {
     @Test
     void shouldSeparatorAtTheEndThrowsException() {
         NameLoad nameLoad = new NameLoad();
-        assertThatThrownBy(()-> nameLoad.parse("John="))
+        assertThatThrownBy(() -> nameLoad.parse("John="))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("not contain a value");
     }
 
     @Test
-    void shouldCorrectData(){
+    void shouldCorrectData() {
         NameLoad nameLoad = new NameLoad();
         nameLoad.parse("John=Doe", "Philip = Van", "John = Vandervafla");
         Map<String, String> map = new HashMap<>();
@@ -54,7 +54,7 @@ class NameLoadTest {
     }
 
     @Test
-    void shouldWePassNull(){
+    void shouldWePassNull() {
         NameLoad nameLoad = new NameLoad();
         assertThatThrownBy(() -> nameLoad.parse(null))
         .isInstanceOf(NullPointerException.class);
