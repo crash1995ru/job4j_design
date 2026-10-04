@@ -22,24 +22,6 @@ public class MatrixIterator implements Iterator<Integer> {
             column = 0;
         }
         return row < data.length;
-=======
-        if (data == null || data.length == 0) {
-                return false;
-            }
-        while (row < data.length) {
-            if (column < data[row].length) {
-                if (data[row][column] != 0) {
-                    return true;
-                }
-                column++;
-            }
-            if (column >= data[row].length) {
-                row++;
-                column = 0;
-            }
-        }
-        return false;
->>>>>>> ac8cfd446310add16ad9b8e7cc81848ac29e127d
     }
 
     @Override
@@ -50,3 +32,4 @@ public class MatrixIterator implements Iterator<Integer> {
         return data[row][column++];
     }
 }
+
